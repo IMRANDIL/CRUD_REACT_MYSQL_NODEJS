@@ -21,7 +21,15 @@ router.post('/createEmployee', (req, res) => {
 
 
 
+//show all the employee......
 
+router.get('/showEmployee', (req, res) => {
+    const query = `SELECT * FROM employee;`;
+    connection.query(query, (err, result) => {
+        if (err) throw err;
+        res.status(200).json({ result });
+    })
+})
 
 
 
