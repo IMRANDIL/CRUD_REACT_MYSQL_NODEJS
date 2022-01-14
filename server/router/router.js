@@ -33,6 +33,26 @@ router.get('/showEmployee', (req, res) => {
 
 
 
+
+
+// show spec employee...
+
+router.get('/showEmployee/:id', (req, res) => {
+    const { id } = req.params;
+    const query = `SELECT * FROM employee WHERE id = ?;`;
+
+    connection.query(query, [id], (err, result) => {
+        if (err) throw err;
+
+
+        res.status(200).send(result);
+    })
+})
+
+
+
+
+
 //update the spec employee.....
 
 router.put('/updateEmployee/:id', (req, res) => {
