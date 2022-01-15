@@ -78,7 +78,12 @@ router.put('/updateEmployee/:id', (req, res) => {
 
 router.delete('/deleteEmployee/:id', (req, res) => {
     const { id } = req.params;
-    const query = `DELETE FROM employee`
+    const query = `DELETE FROM employee WHERE id = ?;`;
+    connection.query(query, [id], (err, result) => {
+        if (err) throw err;
+        res.status(200).send(`Successfully Deleted this Id:${id}`);
+    })
+
 })
 
 
